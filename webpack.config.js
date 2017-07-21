@@ -96,7 +96,7 @@ module.exports = function() {
     devtool: '#source-map',
     output: {
       path: path.resolve('dist'),
-      filename: 'checkout_bundle.js'
+      filename: 'bundle.js'
     },
     module: {
       loaders: [
