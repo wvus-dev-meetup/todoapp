@@ -1,23 +1,13 @@
 import React from 'react';
 
-class Todo extends React.Component {
-	constructor() {
-		super();
-	}
-
-	render() {
-		return (!this.props.data.finished ?
-				<li className="text-primary">
-					<input type="checkbox" onClick={this.props.handleCompleted} id={this.props.id} />
-					{ this.props.title } 
-				</li>
-				:
-				<li className="text-success">
-					<input type="checkbox" onClick={this.props.handleCompleted} id={this.props.id} />
-					<del>{ this.props.title }</del>
-				</li>
-		)
-	}
+const Todo = (props) => {
+	return (
+			<li className={props.data.finished && "text-success"} 
+				onClick={props.handleToDoEdit}>
+					<input type="checkbox" onClick={props.handleCompleted} id={props.id} />
+					{ props.title }
+			</li>
+	)
 }
 
 export default Todo
