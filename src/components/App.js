@@ -50,6 +50,7 @@ class App extends React.Component {
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleToDoEdit = this.handleToDoEdit.bind(this);
 		this.handleEditChange = this.handleEditChange.bind(this);
+		this.handleEditBlur = this.handleEditBlur.bind(this);
 	}
 
 	handleCompleted(e) {
@@ -90,10 +91,23 @@ class App extends React.Component {
 
 	}
 
-	handleEditChange(e) {
-		const value = e.target.value;
-		const name = e.target.name;
-		console.log(value, name);
+	handleEditChange(id, value) {
+
+		this.setState((prevState) => {
+			return prevState.todos.map((todo) => {
+				if (todo.id === id) todo.title = value;
+				return todo;
+			});
+		});
+	}
+	
+	handleEditBlur(id) {
+		this.setState((prevState) => {
+			return prevState.todos.map((todo) => {
+				if (todo.id === id) todo.isEditing = false;
+				return todo;
+			});
+		});
 	}
 
 	getNextId() {
@@ -119,6 +133,7 @@ class App extends React.Component {
 					handleCompleted={this.handleCompleted}
 					handleToDoEdit={this.handleToDoEdit}
 					handleEditChange={this.handleEditChange}
+					handleEditBlur={this.handleEditBlur}
 					/>
 			</div>
 		);

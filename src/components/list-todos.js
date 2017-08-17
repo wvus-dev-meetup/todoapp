@@ -11,7 +11,9 @@ const ListToDos = (props) => {
 						id={item.id}
 						title={item.title}
 						tempValue={item.tempValue}
-						handleEditChange={props.handleEditChange}/>
+						handleEditChange={props.handleEditChange}
+						handleEditBlur={props.handleEditBlur}
+						/>
 		} else {
 			return <ToDo 	
 						key={item.id} 
