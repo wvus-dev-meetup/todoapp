@@ -10,20 +10,31 @@ class App extends React.Component {
 		const initialState = [
 			{
 				id: 1,
-				title: 'Take out the garbage',
+				title: 'Add Search to our app',
 				finished: false,
 			},
 			{
 				id: 2,
-				title: 'Clean the kitchen',
+				title: 'Add Search to our app',
 				finished: false,
 			},
 			{
 				id: 3,
-				title: 'Change the oil in the car',
+				title: 'Convert child components to stateless functional components',
+				finished: false,
+			},
+			{
+				id: 4,
+				title: 'Save ToDo data to localstorage',
+				finished: false,
+			},
+			{
+				id: 5,
+				title: 'Hide completed items (filter?)',
 				finished: false,
 			},
 		];
+
 
 		this.state = {
 			todos: initialState,
