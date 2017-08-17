@@ -12,26 +12,31 @@ class App extends React.Component {
 				id: 1,
 				title: 'Add Search to our app',
 				finished: false,
+				isEditing: false,
 			},
 			{
 				id: 2,
 				title: 'Add Search to our app',
 				finished: false,
+				isEditing: false,
 			},
 			{
 				id: 3,
 				title: 'Convert child components to stateless functional components',
 				finished: false,
+				isEditing: false,
 			},
 			{
 				id: 4,
 				title: 'Save ToDo data to localstorage',
 				finished: false,
+				isEditing: false,
 			},
 			{
 				id: 5,
 				title: 'Hide completed items (filter?)',
 				finished: false,
+				isEditing: false,
 			},
 		];
 
@@ -43,20 +48,19 @@ class App extends React.Component {
 		this.handleCompleted = this.handleCompleted.bind(this);
 		this.handleAddValueChange = this.handleAddValueChange.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
+		this.handleToDoEdit = this.handleToDoEdit.bind(this);
+		this.handleEditChange = this.handleEditChange.bind(this);
 	}
 
 	handleCompleted(e) {
-		console.log(e);
 		const currentId = e.target.id;
 		this.setState((prevState) => {
 			const newState = prevState.todos.map((item) => {
 				if(item.id == currentId) {
 					item.finished = !item.finished;
 				}
-				console.log('item', item);
 				return item;
 			});
-			console.log('newState', newState);
 			return newState;
 		});
 	}
@@ -71,6 +75,25 @@ class App extends React.Component {
 			});
 			return prevState;
 		});
+	}
+
+	handleToDoEdit(id) {
+		
+		console.log(id);
+
+		this.setState((prevState) => {
+			return prevState.todos.map((todo) => {
+				if (todo.id === id) todo.isEditing = true;
+				return todo;
+			});
+		});
+
+	}
+
+	handleEditChange(e) {
+		const value = e.target.value;
+		const name = e.target.name;
+		console.log(value, name);
 	}
 
 	getNextId() {
@@ -94,6 +117,8 @@ class App extends React.Component {
 				<ListToDos 
 					toDoList={this.state.todos} 
 					handleCompleted={this.handleCompleted}
+					handleToDoEdit={this.handleToDoEdit}
+					handleEditChange={this.handleEditChange}
 					/>
 			</div>
 		);
